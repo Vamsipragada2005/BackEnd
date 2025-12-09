@@ -5,4 +5,4 @@ const server = http.createServer((req,res) =>{
 });
 server.listen(7007,()=>{
     console.log('server running at port ${7007}');
-})
+});
