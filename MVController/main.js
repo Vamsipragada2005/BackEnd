@@ -1,12 +1,12 @@
 import express from 'express';
-import router from './routers/StudentRouter.js';
+import getusers from './routers/StudentRouter.js';
+import cors from 'cors';
 const app = express();
 app.use(express.json());
-app.get('/getStudents',(req,res)=>{
-    res.send("api Suceess");
-});
+app.use(cors());
 
-app.use('/get-students',router);
+
+app.use('/',getusers);
 
 app.listen(1234,()=>{
     console.log("sever running at port : 1234");
