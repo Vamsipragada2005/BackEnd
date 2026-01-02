@@ -1,20 +1,49 @@
-import './App.css';
-import axios from 'axios';
+import { useState } from "react";
 
 function App() {
+  const [task, setTask] = useState("");
+  const [time, setTime] = useState("");
 
-  const fetchData = () => {
-    axios.get("http://localhost:1234/getStudents")
-      .then((result) => console.log(result.stdData))
-      .catch((error) => console.log(error));
-  };
+  async function addTask() {
+    if (!task || !time) {
+      alert("Enter all fields");
+      return;
+    }
+
+    await fetch("http://localhost:1234/api/tasks/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        task: task,
+        spendTime: time
+      })
+    });
+
+    setTask("");
+    setTime("");
+  }
 
   return (
-    <>
-      <h1>This is from frontend</h1>
-      <button onClick={fetchData}>Fetch Data</button>
-    </>
+    <div>
+      <input
+        placeholder="Task"
+        value={task}
+        onChange={(e) => setTask(e.target.value)}
+      />
+
+      <br />
+
+      <input
+        placeholder="Time"
+        value={time}
+        onChange={(e) => setTime(e.target.value)}
+      />
+
+      <br />
+
+      <button onClick={addTask}>Add Task</button>
+    </div>
   );
-};
+}
 
 export default App;

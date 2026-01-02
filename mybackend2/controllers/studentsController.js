@@ -10,6 +10,8 @@ const getStudentsDetails = async(req, res) => {
     }
 
 };
+
+
 const addStudents = async(req, res) => {
     try{
          const data = req.body;
@@ -22,6 +24,8 @@ const addStudents = async(req, res) => {
         res.status(500).json({error: error.message})
     }
 };
+
+
 const getStudentById = async (req, res) => {
     try{
         const id = req.params.userid;
@@ -33,6 +37,8 @@ const getStudentById = async (req, res) => {
         res.status(500).json({error: error.message})
     }
 };
+
+
 // This is for testing 👀⁉️
 const getStudentsDetailsWithFilters = async(req, res) => {
     try{

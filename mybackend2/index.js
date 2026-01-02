@@ -1,21 +1,21 @@
-import express from 'express';
-import cors from 'cors';
-import mongoose from 'mongoose';
-import studentRouter from './routers/studentsRouters.js';
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import TaskRouter from "./routers/ToDoRouter.js";
 
 const app = express();
+
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb+srv://vamsipragada1750_db_user:NNaidu1750@cluster0.3rj6qbc.mongodb.net/mydb").then(() => console.log("db connected"))
-.catch((error) => console.log(error));
 
-app.use('/', studentRouter);
-app.get('/users', (req, res) => {
-    console.log("hello this is");
-    res.send("hello this is from backend");
-})
+app.use("/api/tasks", TaskRouter);
 
-app.listen(2885, () => {
-    console.log("server running at port 2885")
+mongoose
+  .connect("mongodb+srv://vamsipragada1750_db_user:NNaidu1750@cluster0.3rj6qbc.mongodb.net/mydb1")
+  .then(() => console.log("db connected"))
+  .catch((error) => console.log(error));
+
+app.listen(1234, () => {
+  console.log("server running at port 1234");
 });
