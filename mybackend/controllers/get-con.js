@@ -1,6 +1,6 @@
 
 const TestingApi = (req,res)=>{
-    res.send('this is a method');
+    return res.status(200).json('this is a method');
 }
 
 const funn = (req,res)=>{
