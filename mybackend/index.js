@@ -25,7 +25,7 @@ import cors from 'cors';
 // app.listen(1122,()=>console.log('server started'));
 
 // const express = require('express')
-const route = require('../mybackend/routes/UserRouter')
+import route from './routes/UserRouter';
 const app = express();
 app.use(express.json());
 app.use('/',route);

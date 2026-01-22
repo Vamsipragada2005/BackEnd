@@ -1,5 +1,5 @@
 import task from '../models/ToDoModel.js';
-
+import bcrypt from 'bcrypt';
 const add = async(req, res) => {
     try{
          const data = req.body;
@@ -22,4 +22,28 @@ const getTaskDetails = async(req, res) => {
     }
 
 };
-export {add,getTaskDetails};
+const encryption = async(req,res)=>{
+    try{
+        const result = await bcrypt.hash(req.body.password,10);
+        return res.status(200).json(result);
+    }
+    catch(err){
+        console.log(err);
+        return res.status(500).json(err);
+    }
+}
+
+
+const verifyEncryption = async(req,res)=>{
+    try{
+        const encode ="$2b$10$4KebiHv7vTzX0D1/0JfFJuUM2HaWA6TdsR5UqwePL3Og77KgHUhBO"
+        const verify = await bcrypt.compare(req.body.password,encode);
+        return res.status(200).json(verify);
+    }
+    catch(err){
+        console.log(err);
+        return res.status(500).json(err);
+    }
+}
+
+export {add,getTaskDetails,encryption,verifyEncryption};
